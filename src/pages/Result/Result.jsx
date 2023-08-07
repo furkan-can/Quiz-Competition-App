@@ -1,12 +1,13 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Result = () => {
+    const navigate = useNavigate();
     const location = useLocation();
-    const { answers } = location.state;
+    let { answers } = location.state;
+    answers = answers.filter((_, index) => index !== 0 && index !== 1);
 
     useEffect(() => {
-        console.log(answers);
     }, [answers]);
 
     return (
@@ -30,12 +31,13 @@ const Result = () => {
                                 {index + 1} - {answer.question}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap capitalize">
-                                {answer.index == 0 ? "A" : answer.index == 1 ? "B" : answer.index == 2 ? "C" : "D"} - {answer.answer}
+                                {answer.index == 0 ? "A" : answer.index == 1 ? "B" : answer.index == 2 ? "C" : answer.index == 3 ? "D" : "X"} - {answer.answer}
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <button onClick={() => navigate("/")} className="bg-blue-500 hover:bg-blue-600 text-white w-40 font-extrabold text-lg uppercase py-2 px-4 rounded-lg shadow-md focus:outline-none mt-4">Play Again</button>
         </div>
     )
 }

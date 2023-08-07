@@ -7,7 +7,7 @@ import getQuestions from "../../services/service"
 
 const Quiz = () => {
     const [data, setData] = useState([]);
-    const [time, setTime] = useState(5);
+    const [time, setTime] = useState(30);
     const [canAnswer, setCanAnswer] = useState(false);
     const [isFinish, setIsFinish] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState({
@@ -19,7 +19,7 @@ const Quiz = () => {
 
 
     const prepareQuestions = (questions) => {
-        return questions.slice(0, 2).map((question) => {
+        return questions.slice(0, 10).map((question) => {
             return {
                 question: question.title,
                 answer: "A",
@@ -65,9 +65,9 @@ const Quiz = () => {
                     return;
                 }
                 setQuestionIndex((questionIndex) => questionIndex + 1);
-                setTime(5);
+                setTime(30);
             }
-            if (time <= 4)
+            if (time <= 20)
                 setCanAnswer(true);
         }, 1000);
         return () => clearTimeout(timer);
