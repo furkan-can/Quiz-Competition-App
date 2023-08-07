@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  @apply w-screen h-screen;
+  background-image: url("assets/start-bg.jpg");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
